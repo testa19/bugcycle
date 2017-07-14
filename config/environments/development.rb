@@ -6,6 +6,11 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  BetterErrors::Middleware.allow_ip! "10.0.2.2" #ENV['TRUSTED_IP'] if ENV['TRUSTED_IP']
+  class Application < Rails::Application
+    config.web_console.whitelisted_ips = '10.0.2.2'
+  end
+  
   # Do not eager load code on boot.
   config.eager_load = false
 
