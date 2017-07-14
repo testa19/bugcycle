@@ -30,3 +30,5 @@ RoR project which will help to find “Bicycle” as quick as possible.
 
 Main branch: ‘dev’, each feature developed in separate branch and merged into dev branch via PR. 
 Time: 3-4 days. 
+Rails version: 5.0.4
+Ruby version: 2.3.3 (x86_64-linux)
