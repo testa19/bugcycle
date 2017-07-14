@@ -7,5 +7,9 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_one :commit, dependent: :destroy
   has_one :bicycle, through: :commit
-  has_many :bicycles, through: :likes
+  has_many :liked, through: :likes, source: :bicycle
+
+  def liked?(id)
+    liked.exists?(id)
+  end
 end
