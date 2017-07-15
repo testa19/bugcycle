@@ -1,5 +1,5 @@
 class BicyclesController < InheritedResources::Base
-  actions :all, :except => [ :edit, :update, :destroy ]
+  actions :index, :show
   
   private
 
