@@ -8,7 +8,7 @@ class Bicycle < ApplicationRecord
 
   validates :name, uniqueness: true, presence: true
 
-  before_save { name.downcase! } 
+  before_save { name.downcase! if name } 
   # than capitilise if needed or we can store original name in attribute 
   # like: attr_accessor :oname... oname = name; name.downcase!
 end

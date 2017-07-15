@@ -7,5 +7,9 @@ FactoryGirl.define do
     factory :invalid_bike do
       name nil
     end
+
+    after(:create) do |bike|
+      FactoryGirl.create(:pic, bicycle: bike)
+    end
   end
 end
