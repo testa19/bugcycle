@@ -1,0 +1,15 @@
+nav.navbar
+  ul.navbar
+    li: a href="/" = t('layouts.application.home')
+    li: a href="http://www..../faq" = t('layouts.application.questions')
+    li: a href="http://www..../contact" = t('layouts.application.contact')
+    li
+      - if current_user
+        | Logged in as #{current_user.email}.
+        |  
+        | #{link_to "Log out", logout_path, method: :delete}
+      - else
+        /- #link_to "Sign up", sign_up_path
+        = link_to "Log in", login_path
+        | or 
+        = link_to "Sign up", new_user_registration_path
