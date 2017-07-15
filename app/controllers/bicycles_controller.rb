@@ -1,5 +1,6 @@
 class BicyclesController < InheritedResources::Base
-
+  actions :all, :except => [ :edit, :update, :destroy ]
+  
   private
 
     def bicycle_params

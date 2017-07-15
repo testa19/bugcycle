@@ -1,0 +1,7 @@
+div class="bike" 
+  
+  h2  = bicycle.name
+  = image_tag bicycle.pic.image.url if bicycle.pic
+  h3 Description:
+  p = bicycle.description
+  = link_to 'Show', bicycle  
