@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :like do
-    bicycle nil
-    user nil
+    bicycle
+    user
   end
 end

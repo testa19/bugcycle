@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :commit do
-    bicycle nil
-    user nil
+    bicycle
+    user
   end
 end

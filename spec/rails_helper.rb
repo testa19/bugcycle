@@ -37,15 +37,15 @@ RSpec.configure do |config|
 
   # Module for getting attributes_with_foreign_keys in your controllers 
   # https://github.com/thoughtbot/factory_girl/issues/359 
-  config.include ControllerMacros, type: :controller
+  # config.include ControllerMacros, type: :controller
 
   # Module for basic http authenticating in your controllers (atom and such) 
   # https://gist.github.com/mattconnolly/4158961
   # http://stackoverflow.com/questions/3768718/rails-rspec-make-tests-pass-with-http-basic-authentication
-  config.include AuthHelper, type: :controller
-  config.include AuthHelper, type: :feature
+  # config.include AuthHelper, type: :controller
+  # config.include AuthHelper, type: :feature
 
-  config.include Pundit::Matchers
+  # config.include Pundit::Matchers
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

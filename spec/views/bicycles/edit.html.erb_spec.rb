@@ -4,7 +4,8 @@ RSpec.describe "bicycles/edit", type: :view do
   before(:each) do
     @bicycle = assign(:bicycle, Bicycle.create!(
       :name => "MyString",
-      :description => "MyString"
+      :description => "MyString",
+      category: create(:category)
     ))
   end
 
