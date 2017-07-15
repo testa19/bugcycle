@@ -16,7 +16,7 @@ ActiveAdmin.register Bicycle do
     column :id
     column "Name", :name
     column "Description", :description
-    column "Category", :category_id
+    column "Category", :category
     column "Updated at", :updated_at
     column "Created at", :created_at
   end
