@@ -29,11 +29,11 @@ RSpec.describe BicyclesController, type: :controller do
   # Bicycle. As you add validations to Bicycle, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {name: "Bike", description: "Long description", category: create(:category)}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {name: nil, description: "Long description"}
   }
 
   # This should return the minimal set of values that should be in the session

@@ -4,12 +4,14 @@ RSpec.describe "bicycles/index", type: :view do
   before(:each) do
     assign(:bicycles, [
       Bicycle.create!(
-        :name => "Name",
-        :description => "Description"
+        :name => "Name 1",
+        :description => "Description",
+        category: create(:category)
       ),
       Bicycle.create!(
-        :name => "Name",
-        :description => "Description"
+        :name => "Name 2",
+        :description => "Description",
+        category: create(:category)
       )
     ])
   end
