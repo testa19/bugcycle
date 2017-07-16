@@ -1,5 +1,6 @@
 class BicyclesController < ApplicationController
   before_action :set_bicycle, only: [:show]
+
   helper_method :sort_column, :sort_direction, :permitted_params
   # GET /products
   # GET /products.json
