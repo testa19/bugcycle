@@ -1,4 +1,7 @@
 p#notice =notice
 
 h1 Bicycles
-= render partial: "bicycle", collection: @bicycles
+div.bike-list
+  =render 'list'
+
+div= debug(params)
