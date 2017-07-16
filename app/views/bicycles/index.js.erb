@@ -1,1 +1,2 @@
+document.title = "<%= escape_javascript("Bugcycle: #{params[:search].to_s.titleize} Bugcycles by #{(params[:sort] || 'name').titleize} - Page #{params[:page] || 1}") %>";
 $(".bike-list").html("<%= escape_javascript(render("list")) %>");
