@@ -1,5 +1,7 @@
 document.title = "<%= escape_javascript("Bugcycles: #{params[:search].to_s.titleize} Sorted by #{(params[:sort].blank? ? 'name' : params[:sort]).titleize} - Page #{params[:page] || 1}") %>";
 // history.pushState(null, document.title, this.href);
-$("input#sort").val('<%=sort_column%>');
-$("input#direction").val('<%=sort_direction%>');
+$("input#sort, input.f-sort").val('<%=sort_column%>');
+$("input#direction, input.f-direction").val('<%=sort_direction%>');
+$("input#search, input.f-search").val('<%=search_string%>');
 $(".bike-list").html("<%= escape_javascript(render("list")) %>");
+// $("#filter-bicycles").html("<%= escape_javascript(render("filter")) %>");
