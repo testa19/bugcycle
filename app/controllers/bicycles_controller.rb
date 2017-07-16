@@ -1,7 +1,7 @@
 class BicyclesController < ApplicationController
   before_action :set_bicycle, only: [:show]
 
-  helper_method :sort_column, :sort_direction, :permitted_params, :filter_by_options
+  helper_method :sort_column, :sort_direction, :search_string, :permitted_params, :filter_by_options
   # GET /products
   # GET /products.json
   def index
@@ -9,6 +9,8 @@ class BicyclesController < ApplicationController
     filtered = bicycles.filter(filtering_params(params)) # optimise search here
     @bicycles = filtered.includes(:pic, :category).order(sort_column + " " + sort_direction).page(params[:page]).per(2)
     @filter_by = [:category_id]
+
+    respond_to :html, :js
   end
 
   # GET /products/1
@@ -27,6 +29,10 @@ class BicyclesController < ApplicationController
     
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def search_string
+      params[:search]
     end
 
     def permitted_params

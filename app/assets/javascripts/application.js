@@ -23,6 +23,15 @@ $(function() {
     history.pushState(null, document.title, $("#search-frm").attr("action") + "?" + $("#search-frm").serialize());
   });
 
+  $(document).on('change', '#filter-form :checkbox', function() {
+    $( 'form#filter-form' ).trigger("submit.rails"); 
+    history.pushState(null, document.title, $("#filter-form").attr("action") + "?" + $("#filter-form").serialize());
+  });
+
+  $("#filter-form").submit(function() {
+    history.pushState(null, document.title, $("#filter-form").attr("action") + "?" + $("#filter-form").serialize());
+  });
+
   $(window).bind("popstate", function() {
       $.getScript(location.href);
       $("input#search").val(new URLSearchParams(window.location.search).get('search'));
