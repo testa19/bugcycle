@@ -1,10 +1,11 @@
 class BicyclesController < ApplicationController
   before_action :set_bicycle, only: [:show]
-  
+
+  helper_method :sort_column, :sort_direction, :permitted_params
   # GET /products
   # GET /products.json
   def index
-    @bicycles = Bicycle.all.page(params[:page]).per(2)
+    @bicycles = Bicycle.all.order(sort_column + " " + sort_direction).page(params[:page]).per(2)
   end
 
   # GET /products/1
@@ -15,6 +16,18 @@ class BicyclesController < ApplicationController
   private
     def set_bicycle
       @bicycle = Bicycle.find(params[:id])
+    end
+
+    def sort_column
+      Bicycle.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def permitted_params
+      params.permit(:sort, :direction, :page)
     end
 
     def bicycle_params
