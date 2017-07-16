@@ -3,6 +3,10 @@ table.sorting
     th= sortable "name"
     th= sortable "updated_at", "Released"
 
-= render partial: "bicycle", collection: @bicycles
+- if @bicycles.blank?
+  h3 
+    | There are no bikes containing the term "#{params[:search]}"
+- else
+  = render partial: "bicycle", collection: @bicycles
 
 = paginate @bicycles, remote: true
