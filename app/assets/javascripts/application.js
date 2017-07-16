@@ -14,3 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function() {
+  $(document).on('click', '.sorting a, .pagination a', function() {
+      history.pushState(null, document.title, this.href);
+  });
+});
