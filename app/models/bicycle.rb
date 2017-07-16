@@ -7,7 +7,7 @@ class Bicycle < ApplicationRecord
   has_one :user, through: :commit
 
   validates :name, uniqueness: true, presence: true
-
+  accepts_nested_attributes_for :pic
   before_save { name.downcase! if name } 
   # than capitilise if needed or we can store original name in attribute 
   # like: attr_accessor :oname... oname = name; name.downcase!
