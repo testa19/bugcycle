@@ -4,5 +4,7 @@
     
     = form_tag bicycles_path, :method => 'get', id: 'search-frm', class: 'form-inline', remote: true do
       .form-group
+        = hidden_field_tag :direction, params[:direction]
+        = hidden_field_tag :sort, params[:sort]
         = text_field_tag :search, params[:search], class: "form-control"
         = submit_tag "Search", name: nil, class: "btn btn-primary"

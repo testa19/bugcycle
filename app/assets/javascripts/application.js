@@ -16,6 +16,15 @@
 //= require_tree .
 $(function() {
   $(document).on('click', '.sorting a, .pagination a', function() {
-      history.pushState(null, document.title, this.href);
+    history.pushState(null, document.title, this.href);
   });
+
+  $(document).on('submit', '#search-frm', function() {
+    history.pushState(null, document.title, $("#search-frm").attr("action") + "?" + $("#search-frm").serialize());
+  });
+
+  $(window).bind("popstate", function() {
+      $.getScript(location.href);
+      $("input#search").val(new URLSearchParams(window.location.search).get('search'));
+    });
 });

@@ -1,3 +1,5 @@
-document.title = "<%= escape_javascript("Bugcycles by #{(params[:sort] || 'name').titleize} - Page #{params[:page] || 1}") %>";
+document.title = "<%= escape_javascript("Bugcycles: #{params[:search].to_s.titleize} Sorted by #{(params[:sort].blank? ? 'name' : params[:sort]).titleize} - Page #{params[:page] || 1}") %>";
 // history.pushState(null, document.title, this.href);
+$("input#sort").val('<%=sort_column%>');
+$("input#direction").val('<%=sort_direction%>');
 $(".bike-list").html("<%= escape_javascript(render("list")) %>");
