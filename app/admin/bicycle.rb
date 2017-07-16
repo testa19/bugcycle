@@ -1,7 +1,7 @@
 ActiveAdmin.register Bicycle do
 
-  permit_params(:name, :description, :category_id,
-    pic_attributes: [:id, :name, :image, :bicycle_id, :remote_image_url])
+  permit_params :name, :description, :category_id,
+    pic_attributes: [:id, :name, :image, :bicycle_id, :remote_image_url]
 
   action_item :new, only: :show do
     link_to 'New bike', new_admin_bicycle_path
