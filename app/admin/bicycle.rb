@@ -1,4 +1,5 @@
 ActiveAdmin.register Bicycle do
+
   permit_params :name, :description, :category_id,
     pic_attributes: [:id, :name, :image, :bicycle_id, :remote_image_url]
 
@@ -16,7 +17,7 @@ ActiveAdmin.register Bicycle do
     column :id
     column "Name", :name
     column "Description", :description
-    column "Category", :category_id
+    column "Category", :category
     column "Updated at", :updated_at
     column "Created at", :created_at
   end
@@ -45,8 +46,8 @@ ActiveAdmin.register Bicycle do
     f.inputs "Image", for: [:pic, f.object.pic || Pic.new] do |s|
       s.input :image, label: 'Image', as: :file,
         hint:  s.object.image.blank? ? content_tag(:p, "") : image_tag(s.object.image.url)
-      # s.input :image_cache, as: :hidden 
-      # s.input :remote_image_url, label: "or paste image link"
+      s.input :image_cache, as: :hidden 
+      s.input :remote_image_url, label: "or paste image link"
       # s.actions
     end
     
