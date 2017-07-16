@@ -5,7 +5,7 @@ table.sorting
 
 - if @bicycles.blank?
   h3 
-    | There are no bikes containing the term "#{params[:search]}"
+    | There are no bikes satisfying search a query or a filter
 - else
   = render partial: "bicycle", collection: @bicycles
 

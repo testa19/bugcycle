@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_one :bicycle, through: :commit
   has_many :liked, through: :likes, source: :bicycle
 
+  alias_attribute :name, :email
+  
   def liked?(id)
     liked.exists?(id)
   end

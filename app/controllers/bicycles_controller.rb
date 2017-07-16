@@ -1,12 +1,14 @@
 class BicyclesController < ApplicationController
   before_action :set_bicycle, only: [:show]
 
-  helper_method :sort_column, :sort_direction, :permitted_params
+  helper_method :sort_column, :sort_direction, :permitted_params, :filter_by_options
   # GET /products
   # GET /products.json
   def index
     bicycles = Bicycle.where('name LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
-    @bicycles = bicycles.order(sort_column + " " + sort_direction).page(params[:page]).per(2)
+    filtered = bicycles.filter(filtering_params(params)) # optimise search here
+    @bicycles = filtered.includes(:pic, :category).order(sort_column + " " + sort_direction).page(params[:page]).per(2)
+    @filter_by = [:category_id]
   end
 
   # GET /products/1
@@ -28,7 +30,17 @@ class BicyclesController < ApplicationController
     end
 
     def permitted_params
-      params.permit(:sort, :direction, :page, :search, :utf8)
+      params.permit(:sort, :direction, :page, :search, :utf8, category: [], user: [])
+    end
+
+    def filtering_params(params)
+      # params.slice(:category, :user)
+      params.slice(:category)
+    end
+
+    def filter_by_options(klass)
+      filter = klass.singularize.classify.constantize
+      filter.all.map {|c| [c.id, c.name]}    
     end
 
     def bicycle_params

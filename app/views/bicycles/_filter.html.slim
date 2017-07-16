@@ -1,0 +1,22 @@
+nav#filter_bicycles.sidebar-item
+  = form_tag bicycles_path, action: "/", :method => 'get', id:"filter_form", class: "filter form-horizontal", remote: true  do
+    = hidden_field_tag :direction, params[:direction]
+    = hidden_field_tag :sort, params[:sort]
+    = hidden_field_tag :search, params[:search]
+
+    .form-group
+      - @filter_by.each do |filter_by_sym|
+        - filter_by = filter_by_sym.to_s.split('_')[0]
+        h4.category= filter_by.capitalize
+        ul
+          - filter_by_options(filter_by).each do |filter_item, filter_name|
+            li
+              = filter_chbox_option(filter_by, filter_item)
+              = filter_name
+
+    .form-group
+      .col-sm-offset-4.col-sm-5
+        = submit_tag 'submit', name: nil, id: "filter-submit"
+        = javascript_tag "$('.filter #filter-submit').hide()"
+
+    div= debug(params)
