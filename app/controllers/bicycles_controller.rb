@@ -5,7 +5,8 @@ class BicyclesController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @bicycles = Bicycle.all.order(sort_column + " " + sort_direction).page(params[:page]).per(2)
+    bicycles = Bicycle.where('name LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    @bicycles = bicycles.order(sort_column + " " + sort_direction).page(params[:page]).per(2)
   end
 
   # GET /products/1
@@ -27,7 +28,7 @@ class BicyclesController < ApplicationController
     end
 
     def permitted_params
-      params.permit(:sort, :direction, :page)
+      params.permit(:sort, :direction, :page, :search, :utf8)
     end
 
     def bicycle_params

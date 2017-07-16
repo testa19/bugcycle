@@ -1,0 +1,8 @@
+.banner
+  .wrapper
+    p Bugcycle place
+    
+    = form_tag bicycles_path, :method => 'get', id: 'search-frm', class: 'form-inline', remote: true do
+      .form-group
+        = text_field_tag :search, params[:search], class: "form-control"
+        = submit_tag "Search", name: nil, class: "btn btn-primary"
