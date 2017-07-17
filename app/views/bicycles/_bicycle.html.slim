@@ -1,19 +1,24 @@
 div class="bike" 
   
   h2  = bicycle.name
-  = image_tag bicycle.pic.image.url if bicycle.pic
+  -if bicycle.pic
+    = params[:action] == "show" ? image_tag(bicycle.pic.image.url) : image_tag(bicycle.pic.image.thumb.url)
   h3 Description:
   p = bicycle.description
   h3 Category:
   p = bicycle.category.name
   - if bicycle.user.nil? 
-    - if user_signed_in? 
-      = link_to 'Commit', commit_bicycle_path(bicycle)
+
+    - if user_signed_in?
+      h3
+        = link_to 'Commit', commit_bicycle_path(bicycle)
+
     - else
       h3 No one commited 
   -else
     h3 Commited by:
-    p =bicycle.user.name
+      #{bicycle.user.name}
+
     -if bicycle.user == current_user
       = link_to 'Uncommit', commit_bicycle_path(bicycle) 
   h3 

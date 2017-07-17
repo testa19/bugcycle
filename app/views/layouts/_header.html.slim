@@ -1,15 +1,32 @@
-nav.navbar
-  ul.navbar
-    li: a href="/" = t('layouts.application.home')
-    li: a href="http://www..../faq" = t('layouts.application.questions')
-    li: a href="http://www..../contact" = t('layouts.application.contact')
-    li
-      - if current_user
-        | Logged in as #{current_user.email}.
-        |  
-        | #{link_to "Log out", logout_path, method: :delete}
-      - else
-        /- #link_to "Sign up", sign_up_path
-        = link_to "Log in", login_path
-        | or 
-        = link_to "Sign up", new_user_registration_path
+nav#custom-bootstrap-menu.custom-bootstrap-menu.navbar.navbar-default.navbar-static-top role="navigation"
+  .container  
+    .navbar-header
+      #logo.nav.navbar-nav 
+        a.navbar-brand href="#{main_app.root_path}" 
+          h1 Bugcycle
+        p.navbar-text Buggy little site
+      button.navbar-toggle.collapsed data-target=".navbar-collapse" data-toggle="collapse" type="button" 
+        span.sr-only Toggle navigation
+        div.btn-menu
+            dic.stripes
+        / span.icon-bar
+        / span.icon-bar
+        / span.icon-bar
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav.navbar-right
+        li.nav-item
+          = link_to "Home", root_path
+        li.nav-item: a href="/" = t('layouts.application.questions')
+        li.nav-item
+        - if current_user
+          li.nav-item
+            = link_to "Logged in as #{current_user.email}", logout_path, method: :delete
+          li.nav-item
+            = link_to "Log out", logout_path, method: :delete
+        - else
+          li.nav-item
+            = link_to "Log in", login_path
+          li.nav-item
+            = link_to "Sign up", new_user_registration_path
+        
+            

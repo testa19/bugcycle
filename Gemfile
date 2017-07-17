@@ -65,6 +65,8 @@ gem 'devise'
 gem 'carrierwave', '~> 1.0'
 gem 'rmagick'
 
+gem 'bootstrap-sass'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
