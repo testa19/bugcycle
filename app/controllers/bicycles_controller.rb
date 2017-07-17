@@ -1,6 +1,6 @@
 class BicyclesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show, :index]
-  before_action :set_bicycle, only: [:show, :commit]
+  before_action :set_bicycle, only: [:show, :commit, :like]
 
   helper_method :sort_column, :sort_direction, :search_string, :permitted_params, :filter_by_options
   # GET /products
@@ -26,6 +26,14 @@ class BicyclesController < ApplicationController
       : 
       @bicycle.user = current_user
     redirect_to @bicycle, notice: 'Bicycle commitment changed.'
+  end
+
+  def like
+    @bicycle.liked_by.include?(current_user) ? 
+      @bicycle.liked_by.delete(current_user)
+      : 
+      @bicycle.liked_by << current_user
+    redirect_to @bicycle, notice: 'Your like have changed.'
   end
   
   private

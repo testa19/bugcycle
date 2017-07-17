@@ -16,7 +16,8 @@ nav#custom-bootstrap-menu.custom-bootstrap-menu.navbar.navbar-default.navbar-sta
       ul.nav.navbar-nav.navbar-right
         li.nav-item
           = link_to "Home", root_path
-        li.nav-item: a href="/" = t('layouts.application.questions')
+        li.nav-item
+          = link_to "Admin", admin_root_path
         li.nav-item
         - if current_user
           li.nav-item
