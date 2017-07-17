@@ -1,5 +1,5 @@
 nav#filter-bicycles.sidebar-item
-  = form_tag bicycles_path, :method => 'get', id:"filter-form", class: "filter form-horizontal", remote: true  do
+  = form_tag bicycles_path, method: 'get', id:"filter-form", class: "filter form-horizontal", remote: true  do
     .form-group
       = hidden_field_tag :direction, params[:direction], {class: "f-direction"}
       = hidden_field_tag :sort, params[:sort], {class: "f-sort"}
