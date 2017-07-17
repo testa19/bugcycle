@@ -1,14 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @bicycle.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @bicycle.description %>
-</p>
-
-<%= link_to 'Edit', edit_bicycle_path(@bicycle) %> |
-<%= link_to 'Back', bicycles_path %>
+<div class="bike-list">
+  <%= render partial:'bicycle', locals: { bicycle: @bicycle } %>
+</div>

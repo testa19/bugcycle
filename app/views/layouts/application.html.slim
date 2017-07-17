@@ -11,7 +11,9 @@ doctype html
   <body>
     = render "layouts/header"
     .container
-      = render 'layouts/banner'
-      = yield
+      -if params[:action] == "index"
+        = render 'layouts/banner'
+      .content
+        = yield
   </body>
 </html>

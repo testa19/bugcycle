@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :bicycles, only: [:show, :index]
+  resources :bicycles, only: [:show, :index] do
+    get :commit, :on => :member
+  end
 
   devise_scope :user do
     get 'login', to: 'devise/sessions#new'

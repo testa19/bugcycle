@@ -1,5 +1,6 @@
 class BicyclesController < ApplicationController
-  before_action :set_bicycle, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show, :index]
+  before_action :set_bicycle, only: [:show, :commit]
 
   helper_method :sort_column, :sort_direction, :search_string, :permitted_params, :filter_by_options
   # GET /products
@@ -7,7 +8,7 @@ class BicyclesController < ApplicationController
   def index
     bicycles = Bicycle.where('name LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     filtered = bicycles.filter(filtering_params(params)) # optimise search here
-    @bicycles = filtered.includes(:pic, :category).order(sort_column + " " + sort_direction).page(params[:page]).per(2)
+    @bicycles = filtered.includes(:pic, :category, :user, :likes).order(sort_column + " " + sort_direction).page(params[:page]).per(2)
     @filter_by = [:category_id]
 
     respond_to :html, :js
@@ -16,6 +17,15 @@ class BicyclesController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+  end
+
+  def commit
+    commitment = @bicycle.user
+    commitment == current_user ? 
+      @bicycle.commit.delete
+      : 
+      @bicycle.user = current_user
+    redirect_to @bicycle, notice: 'Bicycle commitment changed.'
   end
   
   private
