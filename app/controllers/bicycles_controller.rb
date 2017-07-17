@@ -6,7 +6,7 @@ class BicyclesController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    bicycles = Bicycle.where('name LIKE ? OR description LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
+    bicycles = Bicycle.search(params[:search])
     filtered = bicycles.filter(filtering_params(params)) # optimise search here
     @bicycles = filtered.includes(:pic, :category, :user, :likes).order(sort_column + " " + sort_direction).page(params[:page]).per(2)
     @filter_by = [:category_id]
