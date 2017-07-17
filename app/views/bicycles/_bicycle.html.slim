@@ -8,14 +8,17 @@ div class="bike"
   h3 Category:
   p = bicycle.category.name
   - if bicycle.user.nil? 
+
     - if user_signed_in?
       h3
         = link_to 'Commit', commit_bicycle_path(bicycle)
+
     - else
       h3 No one commited 
   -else
     h3 Commited by:
       #{bicycle.user.name}
+
     -if bicycle.user == current_user
       = link_to 'Uncommit', commit_bicycle_path(bicycle) 
   h3 
