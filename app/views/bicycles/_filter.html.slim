@@ -6,16 +6,15 @@ nav#filter-bicycles.sidebar-item
       = hidden_field_tag :search, params[:search], {class: "f-search"}
       - @filter_by.each do |filter_by_sym|
         - filter_by = filter_by_sym.to_s.split('_')[0]
+        h3 Filter by
         h4.category= filter_by.capitalize
         ul
           - filter_by_options(filter_by).each do |filter_item, filter_name|
             li
               = filter_chbox_option(filter_by, filter_item)
-              = filter_name
+              <label class="light" for="filter_item"> #{filter_name}</label> 
 
     .form-group
       .col-sm-offset-4.col-sm-5
         = submit_tag 'submit', name: nil, id: "filter-submit"
         = javascript_tag "$('.filter #filter-submit').hide()"
-
-  div= debug(params)
