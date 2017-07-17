@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :bicycles, only: [:show, :index] do
     get :commit, :on => :member
+    get :like, :on => :member
   end
 
   devise_scope :user do

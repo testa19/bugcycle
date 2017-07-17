@@ -24,7 +24,15 @@ div class="bike"
   h3 
     | Likes: 
     = bicycle.likes.count
-
+  
+  - if user_signed_in?
+    - unless bicycle.liked_by.include?(current_user) 
+      h3
+        = link_to 'Like', like_bicycle_path(bicycle)
+    - else
+      h3
+        = link_to 'Dislike', like_bicycle_path(bicycle) 
+       
   
   - unless params[:action] == "show"
     = link_to 'Show', bicycle  
