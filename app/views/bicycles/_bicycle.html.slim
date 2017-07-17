@@ -10,9 +10,12 @@ div class="bike"
   - if bicycle.user.nil? 
 
     - if user_signed_in?
-      h3
-        = link_to 'Commit', commit_bicycle_path(bicycle)
-
+      -if current_user.bicycle.nil?
+        h3
+          = link_to 'Commit', commit_bicycle_path(bicycle)
+      -elsif current_user.bicycle != bicycle
+        h3 Can't commit
+        p You are already committed to another bike   
     - else
       h3 No one commited 
   -else
